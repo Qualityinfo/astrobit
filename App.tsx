@@ -125,7 +125,7 @@ const App: React.FC = () => {
         
         {/* Footer info */}
         <div className="mt-4 text-xs text-gray-600 font-sans">
-          Desenvolvido com React, Tailwind e Vite
+          Desenvolvido com React, Tailwind e Vite .
         </div>
       </div>
     </div>
