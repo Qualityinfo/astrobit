@@ -1,20 +1,42 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# AstroBit Defender
 
-# Run and deploy your AI Studio app
+**AstroBit Defender** é um jogo de tiro espacial (shmup) estilo arcade desenvolvido com React, TypeScript e HTML5 Canvas.
 
-This contains everything you need to run your app locally.
+![Pixel Art](https://img.shields.io/badge/Style-Pixel%20Art-purple)
+![Tech](https://img.shields.io/badge/Tech-React%20%2B%20Vite-blue)
 
-View your app in AI Studio: https://ai.studio/apps/drive/1kYCxPb7KGSJkehZCFrxd679lj2bcZjof
+## 🎮 Como Jogar
 
-## Run Locally
+### Desktop
+- **WASD** ou **Setas**: Movimentam a nave.
+- **ESPAÇO**: Atira.
 
-**Prerequisites:**  Node.js
+### Mobile
+- Use os controles virtuais na tela (D-Pad e botão de tiro).
 
+## 🚀 Como Rodar Localmente
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+1. Clone o repositório.
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
+3. Inicie o servidor de desenvolvimento:
+   ```bash
+   npm run dev
+   ```
+
+## 📦 Build para Produção (Vercel)
+
+O projeto está configurado para deploy na Vercel.
+Comando de build:
+```bash
+npm run build
+```
+
+## 🛠️ Tecnologias
+
+- **Vite**: Build tool rápida.
+- **React 18**: Biblioteca de UI.
+- **TypeScript**: Segurança de tipos.
+- **Tailwind CSS**: Estilização.
