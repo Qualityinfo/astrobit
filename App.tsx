@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import GameCanvas from './components/GameCanvas';
 import { GameState, MissionData } from './types';
 import { generateMissionBriefing } from './services/missionService';
-import { COLORS } from './constants';
 
 const App: React.FC = () => {
   const [gameState, setGameState] = useState<GameState>(GameState.MENU);
@@ -126,7 +125,7 @@ const App: React.FC = () => {
         
         {/* Footer info */}
         <div className="mt-4 text-xs text-gray-600 font-sans">
-          Desenvolvido com React, Tailwind e Gemini API
+          Desenvolvido com React, Tailwind e Vite
         </div>
       </div>
     </div>
