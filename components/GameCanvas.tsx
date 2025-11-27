@@ -396,71 +396,69 @@ const GameCanvas: React.FC<GameCanvasProps> = ({ gameState, setGameState, setSco
   }, [gameState, setScore]);
 
   return (
-    <div className="relative border-4 border-gray-800 rounded-lg overflow-hidden shadow-[0_0_50px_rgba(0,255,0,0.2)] touch-none">
-      <canvas
-        ref={canvasRef}
-        width={CANVAS_WIDTH}
-        height={CANVAS_HEIGHT}
-        className="bg-black block w-full h-auto"
-      />
-      
-      {/* Mobile Controls Overlay (Only visible on mobile/tablet via md:hidden) */}
+    <div className="flex flex-col items-center w-full">
+      {/* SCREEN CONTAINER */}
+      <div className="relative border-4 border-gray-800 rounded-t-lg md:rounded-lg overflow-hidden shadow-[0_0_50px_rgba(0,255,0,0.2)] touch-none bg-black">
+        <canvas
+          ref={canvasRef}
+          width={CANVAS_WIDTH}
+          height={CANVAS_HEIGHT}
+          className="bg-black block w-full h-auto"
+        />
+      </div>
+
+      {/* EXTERNAL CONTROLS (MOBILE ONLY) */}
       {gameState === GameState.PLAYING && (
-        <>
-          {/* D-Pad */}
-          <div className="absolute bottom-6 left-6 grid grid-cols-3 gap-2 md:hidden z-40 touch-none select-none opacity-60 hover:opacity-100">
-             {/* Empty Corner */}
-             <div></div>
-             {/* UP */}
+        <div className="w-full bg-neutral-800 border-x-4 border-b-4 border-gray-800 rounded-b-lg p-6 flex justify-between items-center md:hidden select-none shadow-lg">
+           
+           {/* D-Pad */}
+           <div className="grid grid-cols-3 gap-2">
+             {/* Row 1 */}
+             <div className="w-14 h-14"></div>
              <div 
-                className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center border border-white/30 active:bg-white/50 transition-colors"
+                className="w-14 h-14 bg-gray-700 rounded-md flex items-center justify-center border-b-4 border-r-4 border-gray-900 active:border-0 active:translate-y-1 active:bg-gray-600 transition-all shadow-md"
                 onTouchStart={() => handleTouch('ArrowUp', true)}
                 onTouchEnd={() => handleTouch('ArrowUp', false)}
              >
-                <span className="text-2xl">▲</span>
+                <span className="text-2xl text-gray-400">▲</span>
              </div>
-             {/* Empty Corner */}
-             <div></div>
+             <div className="w-14 h-14"></div>
 
-             {/* LEFT */}
+             {/* Row 2 */}
              <div 
-                className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center border border-white/30 active:bg-white/50 transition-colors"
+                className="w-14 h-14 bg-gray-700 rounded-md flex items-center justify-center border-b-4 border-r-4 border-gray-900 active:border-0 active:translate-y-1 active:bg-gray-600 transition-all shadow-md"
                 onTouchStart={() => handleTouch('ArrowLeft', true)}
                 onTouchEnd={() => handleTouch('ArrowLeft', false)}
              >
-                <span className="text-2xl">◀</span>
+                <span className="text-2xl text-gray-400">◀</span>
              </div>
-             
-             {/* DOWN */}
              <div 
-                className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center border border-white/30 active:bg-white/50 transition-colors"
+                className="w-14 h-14 bg-gray-700 rounded-md flex items-center justify-center border-b-4 border-r-4 border-gray-900 active:border-0 active:translate-y-1 active:bg-gray-600 transition-all shadow-md"
                 onTouchStart={() => handleTouch('ArrowDown', true)}
                 onTouchEnd={() => handleTouch('ArrowDown', false)}
              >
-                <span className="text-2xl">▼</span>
+                <span className="text-2xl text-gray-400">▼</span>
              </div>
-
-             {/* RIGHT */}
              <div 
-                className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center border border-white/30 active:bg-white/50 transition-colors"
+                className="w-14 h-14 bg-gray-700 rounded-md flex items-center justify-center border-b-4 border-r-4 border-gray-900 active:border-0 active:translate-y-1 active:bg-gray-600 transition-all shadow-md"
                 onTouchStart={() => handleTouch('ArrowRight', true)}
                 onTouchEnd={() => handleTouch('ArrowRight', false)}
              >
-                <span className="text-2xl">▶</span>
+                <span className="text-2xl text-gray-400">▶</span>
              </div>
-          </div>
+           </div>
 
-          {/* Fire Button */}
-          <div className="absolute bottom-8 right-8 md:hidden z-40 touch-none select-none opacity-60 hover:opacity-100">
+           {/* Fire Buttons */}
+           <div className="flex gap-4 items-end">
              <div 
-                className="w-20 h-20 bg-red-500/30 rounded-full flex items-center justify-center border-2 border-red-400/50 active:bg-red-500/60 transition-colors shadow-[0_0_15px_rgba(239,68,68,0.4)]"
+                className="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center border-b-8 border-r-4 border-red-900 active:border-0 active:translate-y-2 active:bg-red-500 transition-all shadow-lg"
                 onTouchStart={() => handleTouch('Space', true)}
                 onTouchEnd={() => handleTouch('Space', false)}
              >
-                <span className="text-sm font-bold text-white/80">FIRE</span>
+                <span className="text-sm font-bold text-red-950">FIRE</span>
              </div>
-          </div>
-        </>
+           </div>
+        </div>
       )}
     </div>
   );
