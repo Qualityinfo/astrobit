@@ -70,6 +70,16 @@ const GameCanvas: React.FC<GameCanvasProps> = ({ gameState, setGameState, setSco
     };
   }, []);
 
+  // Mobile Touch Handling Helpers
+  const handleTouch = (key: string, pressed: boolean) => {
+    keysRef.current[key] = pressed;
+  };
+
+  const preventDefaultTouch = (e: React.TouchEvent) => {
+    // Prevents scrolling or zooming when tapping buttons
+    // e.preventDefault(); // Note: React Synthetic events might need passive: false in native listener for complete preventDefault
+  };
+
   // Helpers
   const createExplosion = (x: number, y: number, color: string, count: number) => {
     for (let i = 0; i < count; i++) {
@@ -396,8 +406,67 @@ const GameCanvas: React.FC<GameCanvasProps> = ({ gameState, setGameState, setSco
         ref={canvasRef}
         width={CANVAS_WIDTH}
         height={CANVAS_HEIGHT}
-        className="bg-black block"
+        className="bg-black block w-full h-auto"
       />
+      
+      {/* Mobile Controls Overlay (Only visible on mobile/tablet via md:hidden) */}
+      {gameState === GameState.PLAYING && (
+        <>
+          {/* D-Pad */}
+          <div className="absolute bottom-6 left-6 grid grid-cols-3 gap-2 md:hidden z-40 touch-none select-none opacity-60 hover:opacity-100">
+             {/* Empty Corner */}
+             <div></div>
+             {/* UP */}
+             <div 
+                className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center border border-white/30 active:bg-white/50 transition-colors"
+                onTouchStart={(e) => { preventDefaultTouch(e); handleTouch('ArrowUp', true); }}
+                onTouchEnd={(e) => { preventDefaultTouch(e); handleTouch('ArrowUp', false); }}
+             >
+                <span className="text-2xl">▲</span>
+             </div>
+             {/* Empty Corner */}
+             <div></div>
+
+             {/* LEFT */}
+             <div 
+                className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center border border-white/30 active:bg-white/50 transition-colors"
+                onTouchStart={(e) => { preventDefaultTouch(e); handleTouch('ArrowLeft', true); }}
+                onTouchEnd={(e) => { preventDefaultTouch(e); handleTouch('ArrowLeft', false); }}
+             >
+                <span className="text-2xl">◀</span>
+             </div>
+             
+             {/* DOWN */}
+             <div 
+                className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center border border-white/30 active:bg-white/50 transition-colors"
+                onTouchStart={(e) => { preventDefaultTouch(e); handleTouch('ArrowDown', true); }}
+                onTouchEnd={(e) => { preventDefaultTouch(e); handleTouch('ArrowDown', false); }}
+             >
+                <span className="text-2xl">▼</span>
+             </div>
+
+             {/* RIGHT */}
+             <div 
+                className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center border border-white/30 active:bg-white/50 transition-colors"
+                onTouchStart={(e) => { preventDefaultTouch(e); handleTouch('ArrowRight', true); }}
+                onTouchEnd={(e) => { preventDefaultTouch(e); handleTouch('ArrowRight', false); }}
+             >
+                <span className="text-2xl">▶</span>
+             </div>
+          </div>
+
+          {/* Fire Button */}
+          <div className="absolute bottom-8 right-8 md:hidden z-40 touch-none select-none opacity-60 hover:opacity-100">
+             <div 
+                className="w-20 h-20 bg-red-500/30 rounded-full flex items-center justify-center border-2 border-red-400/50 active:bg-red-500/60 transition-colors shadow-[0_0_15px_rgba(239,68,68,0.4)]"
+                onTouchStart={(e) => { preventDefaultTouch(e); handleTouch('Space', true); }}
+                onTouchEnd={(e) => { preventDefaultTouch(e); handleTouch('Space', false); }}
+             >
+                <span className="text-sm font-bold text-white/80">FIRE</span>
+             </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
